@@ -36,7 +36,14 @@
           <router-link tag="button" class="btn btn-success col-sm-12" name="regist" to="/regist">注册</router-link>
         </div>
         <div class="col-sm-10 col-sm-offset-1 lookAround">
-          <a class="text-center col-sm-12" name="lookAround" href="index.html">随便看看(暂无首页)</a>
+          <div class="remberPassword">
+            <label  for="remmber">
+              <input class="remmber" type="checkbox" name="remmber" id="remmber">
+              <span></span>
+              <div>记住密码</div>
+            </label>
+          </div>
+
         </div>
       </div>
     </div>
@@ -73,7 +80,8 @@
         defaultName: '欢迎您的使用',
         username: '',
         password: '',
-        img: ''
+        img: '',
+        remberPassword:false,
       }
     },
     methods: {
@@ -136,7 +144,14 @@
                 }
               })
             },
-            errorCallback: function () {
+            errorCallback: function (result) {
+              that.$weui.toast(result.msg, {
+                duration: 600,
+                className: 'error',
+                callback: function () {
+                  that.$router.push('/financialManagement')
+                }
+              })
 
             },
           }).init();
@@ -349,5 +364,42 @@
   .foot-bottom{
     margin-top: 2rem;
     font-size: 0.34rem;
+  }
+  .remberPassword label{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .remberPassword input{
+    display: none;
+  }
+  .remberPassword input[type=checkbox]+span {
+    position: relative;
+    display: inline-flex;
+    border-radius: 0.05rem;
+    width: 0.35rem;
+    height: 0.35rem;
+    border: .02rem solid white;
+    color: white;
+    top: 0;
+    align-self: center;
+  }
+  .remberPassword input[type=checkbox]:checked+span:after {
+    content: '\2714';
+    position: absolute;
+    font-size: 0.28rem;
+    font-weight: normal;
+    color: white;
+    top: -0.06rem;
+    left: 0.02rem;
+  }
+  .remberPassword>label>div{
+    display: inline-flex;
+    color: white;
+    font-size: 0.38rem;
+    font-weight: normal;
+    margin-left: 0.1rem;
+    align-self: center;
+
   }
 </style>
