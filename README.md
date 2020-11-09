@@ -1,4 +1,4 @@
-# dormitory-financesss
+## dormitory-financesss
 
 ## Project setup
 ```
